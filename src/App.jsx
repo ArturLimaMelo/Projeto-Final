@@ -1,29 +1,23 @@
-import './App.css';
+import './styles/global.css';
+import "./styles/themes.css";
+import { Route, Routes } from "react-router";
 
-function App() {
+import { Header } from "./components/Header.jsx";
+import Landing from './screens/Landing/Landing.jsx';
+import Footer from './components/Footer.jsx';
+import Login from "./screens/Login/Login.jsx";
+import SignIn from "./screens/SignIn/SignIn.jsx";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
-
-export default App;

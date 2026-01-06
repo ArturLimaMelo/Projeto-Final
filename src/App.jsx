@@ -8,10 +8,12 @@ import Footer from './components/Footer.jsx';
 import Login from "./screens/Login/Login.jsx";
 import SignIn from "./screens/SignIn/SignIn.jsx";
 import Shop from "./screens/Shop/Shop.jsx";
+import { SessionProvider } from './context/SessionContext';
 
 export default function App() {
   return (
     <>
+    <SessionProvider>
       <Header />
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -20,6 +22,7 @@ export default function App() {
         <Route path="/shop" element={<Shop />} />
       </Routes>
       <Footer />
+    </SessionProvider>
     </>
   );
 }

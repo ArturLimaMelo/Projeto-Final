@@ -7,6 +7,7 @@ import Landing from './screens/Landing/Landing.jsx';
 import Footer from './components/Footer.jsx';
 import Login from "./screens/Login/Login.jsx";
 import SignIn from "./screens/SignIn/SignIn.jsx";
+import Shop from "./screens/Shop/Shop.jsx";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/shop" element={<Shop />} />
       </Routes>
       <Footer />
     </>

@@ -11,6 +11,7 @@ export function Header() {
             <div className={styles.options}>
             <Link to="/login" className={styles.link}><UserRound  /></Link>
             <Link to="/signin" className={styles.link}><LogIn /></Link>
+            <Link to="/shop">Shop</Link>
             </div>
         </header>
     )

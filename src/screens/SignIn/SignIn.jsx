@@ -78,10 +78,11 @@ export default function SignIn() {
 
       <Field.Root className={styles.Field}>
         <Field.Label className={styles.Label}>Senha</Field.Label>
+        
         <Field.Control name="password" type={showPassword ? "text" : "password"} placeholder="amoempreender123" className={styles.Input} onChange={handleInputChange} />
         <button
               type="button"
-              className={styles.PasswordToggle}
+              className={styles.passwordToggle}
               onClick={handleTogglePassword}
               aria-label={showPassword}
               aria-controls="password"

@@ -10,6 +10,14 @@
     font-style: normal;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
 .Fieldset {
   background-color: #e3e5e6;
   border-radius: 20px;
@@ -20,7 +28,7 @@
   flex-direction: column;
   gap: 1rem;
   width: 100%;
-  max-width: 16rem;
+  max-width: 20rem;
 }
 
 .Legend {
@@ -38,6 +46,17 @@
   flex-direction: column;
   align-items: start;
   gap: 0.25rem;
+}
+
+.passwd {
+  display: flex;
+  gap: .5rem;
+  width: 100%;
+}
+
+.passwordToggle {
+  background-color: transparent;
+  border: none;
 }
 
 .Label {

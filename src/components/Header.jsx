@@ -1,19 +1,25 @@
 import styles from "./Header.module.css";
 import { UserRound } from "lucide-react";
-import { LogIn } from "lucide-react";
+import { LogOut, Store } from "lucide-react";
 import { Link } from "react-router";
+import { useContext } from "react";
+import { SessionContext } from "../context/SessionContext";
+
 
 export function Header() {
+    const { session, handleSignOut } = useContext(SessionContext);
     return (
         <header className={styles.container}>
-            <Link to="/" className={styles.link}> <h1 className={styles.title}>NeoMarketX</h1></Link>
+            <Link to="/" className={styles.link}> <h1 className={styles.title}>NeoMarketX</h1></Link> 
+           
             
             <div className={styles.options}>
-            <Link to="/login" className={styles.link}><UserRound  /></Link>
-            <Link to="/signin" className={styles.link}><LogIn /></Link>
-            <Link to="/shop">Shop</Link>
+            {!session ? <Link to="/login" className={styles.link}><UserRound  /></Link> : <Link to="/user" className={styles.link}><UserRound  /></Link>}
+            <button onClick={handleSignOut} className={styles.button}><LogOut /></button>
+            <Link to="/shop" className={styles.link}><Store /></Link>
             </div>
         </header>
+         // Seria legal colocar alguma coisa para simbolizar se está dentro de uma sessão ou não, equipe do frontend é com vocês
     )
 }
 

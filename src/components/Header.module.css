@@ -27,3 +27,8 @@
     color: #333;
     font-weight: 500;
 }
+
+.button {
+    border: none;
+    cursor: pointer;
+}

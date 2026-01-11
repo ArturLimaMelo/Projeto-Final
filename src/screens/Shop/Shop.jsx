@@ -1,9 +1,10 @@
 import styles from "./Shop.module.css";
-
+import { useContext } from "react";
+import { SessionContext } from "../../context/SessionContext";
 import ProductList from "../../components/ProductList.jsx";
 
 export default function Shop() {
-
+    const { session } = useContext(SessionContext);
     const products = [
         {
           id: 1,

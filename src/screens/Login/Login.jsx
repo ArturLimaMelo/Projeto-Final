@@ -4,13 +4,20 @@ import { Fieldset } from "@base-ui/react/fieldset";
 import { Form } from "@base-ui/react/form";
 import { Button } from "@base-ui/react/button";
 import { Link } from "react-router";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { SessionContext } from "../../context/SessionContext";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useNavigate } from "react-router";
 
 export default function Login() {
-  const { session, handleSignIn, sessionMessage, sessionError } =
-    useContext(SessionContext);
+  const { session, handleSignIn, sessionMessage, sessionError } = useContext(SessionContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (session) {  
+      navigate("/");
+    }
+  }, [session, navigate]);
+
 
   const [showPassword, setShowPassword] = useState(false);
 

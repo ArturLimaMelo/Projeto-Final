@@ -81,7 +81,7 @@ export default function SignIn() {
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
 
-    handleSignUp(formValues.email, formValues.password, formValues.username);
+    handleSignUp(formValues.email, formValues.password, formValues.username, formValues.name);
   }
 
   function handleInputChange(e) {
@@ -100,7 +100,7 @@ export default function SignIn() {
             Cadastrar-se
           </Fieldset.Legend>
 
-          <Field.Root className={styles.Field} error={errors.name}>
+          <Field.Root className={styles.Field}>
             <Field.Label className={styles.Label}>Nome completo</Field.Label>
             <Field.Control
               type="name"
@@ -111,7 +111,7 @@ export default function SignIn() {
               placeholder="Seu nome"
               className={styles.Input}
             />
-            <Field.Error className={styles.Error}>{errors.name}</Field.Error>
+            <Field.Error className={styles.Error} />
           </Field.Root>
 
           <Field.Root name="username" className={styles.Field}>

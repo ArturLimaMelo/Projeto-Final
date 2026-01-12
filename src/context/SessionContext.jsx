@@ -5,6 +5,7 @@ export const SessionContext = createContext({
   handleSignUp: () => {},
   handleSignIn: () => {},
   handleSignOut: () => {},
+  updateUserId: () => {},
   session: null,
   sessionLoading: false,
   sessionMessage: null,
@@ -53,6 +54,20 @@ export function SessionProvider({ children }) {
           emailRedirectTo: `${window.location.origin}/signin`,
         },
       });
+      try {
+      const { data, error } = await supabase.from("usuario").insert([
+        {
+          id: "not_confirmed",
+          email: email,
+          name: username,
+        },
+      ]);
+      if (error) {
+        console.log("Error inserting user into supabase:", error);
+      }
+    } catch (err) {
+      console.log("Catched Error trying to insert into supabase:", err);
+    }
       if (error) throw error;
 
       if (data?.user) {
@@ -64,6 +79,24 @@ export function SessionProvider({ children }) {
       setSessionError(error.message);
     } finally {
       setSessionLoading(false);
+    }
+  }
+
+  async function updateUserId() {
+    if (session) {
+      try {
+        const { data, error } = await supabase
+          .from("usuario")
+          .update({ id: session.user.id })
+          .eq('email', session.user.email);
+        if (error) {
+          console.error("Error updating user id:", error);
+        } else {
+          console.log("User id updated successfully");
+        }
+      } catch (err) {
+        console.error("Unexpected error:", err);
+      }
     }
   }
 
@@ -118,6 +151,7 @@ export function SessionProvider({ children }) {
     handleSignUp: handleSignUp,
     handleSignIn: handleSignIn,
     handleSignOut: handleSignOut,
+    updateUserId: updateUserId,
     session: session,
     sessionLoading: sessionLoading,
     sessionMessage: sessionMessage,

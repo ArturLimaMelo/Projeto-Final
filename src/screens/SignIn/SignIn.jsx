@@ -9,10 +9,12 @@ import { toast, Bounce } from "react-toastify";
 import { useContext, useState, useEffect } from "react";
 import { SessionContext } from "../../context/SessionContext";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useNavigate } from "react-router";
 
 export default function SignIn() {
   const { session, handleSignUp, sessionMessage, sessionError } =
     useContext(SessionContext);
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -76,26 +78,43 @@ export default function SignIn() {
       newErrors.confirmPassword = "Confirm Password is required";
       console.log("Senha: ", formValues.password, " - Confirmação: ", formValues.confirmPassword);
     }
-    
-    if (formValues.password !== formValues.confirmPassword)
-        newErrors.confirmPassword = "Passwords do not match";
 
-    
+    if (formValues.password != formValues.confirmPassword) {
+        newErrors.confirmPassword = "Passwords do not match";
+      console.log("Senhas não coincidem");
+    }
+    console.log(formValues.password, formValues.password.type, formValues.confirmPassword, formValues.confirmPassword.type);
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) {
       return;
     }
 
-    handleSignUp(formValues.email, formValues.password, formValues.username, formValues.name);
-  }
+    handleSignUp(formValues.email, formValues.password, formValues.username);
+    navigate("/login");
 
+    
+  }
   function handleInputChange(e) {
     const { name, value } = e.target;
-    setFormValues((prev) => ({
+    const newFormValues = { ...formValues, [name]: value };
+    setFormValues(newFormValues);
+
+    setErrors((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: undefined,
     }));
-    console.log(formValues.password, formValues.confirmPassword);
+
+    if (newFormValues.password && newFormValues.confirmPassword && newFormValues.password !== newFormValues.confirmPassword) {
+      setErrors((prev) => ({
+        ...prev,
+        confirmPassword: "Senhas não coincidem",
+      }));
+    } else if (newFormValues.password === newFormValues.confirmPassword) {
+      setErrors((prev) => ({
+        ...prev,
+        confirmPassword: undefined,
+      }));
+    }
   }
 
   return (

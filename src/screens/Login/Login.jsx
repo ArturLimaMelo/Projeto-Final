@@ -10,14 +10,16 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 
 export default function Login() {
-  const { session, handleSignIn, sessionMessage, sessionError } = useContext(SessionContext);
+  const { session, handleSignIn, sessionMessage, sessionError, updateUserId} = useContext(SessionContext);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (session) {  
+      updateUserId();
       navigate("/");
     }
   }, [session, navigate]);
-
+  
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,7 +28,6 @@ export default function Login() {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
-    username: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -40,11 +41,6 @@ export default function Login() {
     if (Object.keys(newErrors).length > 0) return;
 
     handleSignIn(formValues.email, formValues.password);
-
-    setFormValues({
-      email: "",
-      password: "",
-    });
     setErrors({});
     setShowPassword(false);
     console.log("handle submit sign in");
@@ -52,12 +48,15 @@ export default function Login() {
 
   function handleInputChange(e) {
     const { name, value } = e.target;
-    setFormValues((prev) => ({
+    const newFormValues = { ...formValues, [name]: value };
+    setFormValues(newFormValues);
+
+    setErrors((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: undefined,
     }));
   }
-
+  
   return (
     <div className={styles.container}>
       <Form className={styles.form} onSubmit={handleSubmit}>

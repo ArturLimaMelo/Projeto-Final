@@ -58,28 +58,33 @@ export default function SignIn() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    
     const newErrors = {};
     if (!formValues.name) newErrors.name = "Nome completo is required";
-
+    
     if (!formValues.username) newErrors.username = "Username is required";
-
+    
     if (!formValues.email) newErrors.email = "Email is required";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formValues.email && !emailRegex.test(formValues.email)) {
       newErrors.email = "Invalid email format";
     }
-
+    
     if (!formValues.password) newErrors.password = "Password is required";
-
-    if (!formValues.confirmPassword)
+    
+    if (!formValues.confirmPassword) {
       newErrors.confirmPassword = "Confirm Password is required";
-
+      console.log("Senha: ", formValues.password, " - Confirmação: ", formValues.confirmPassword);
+    }
+    
     if (formValues.password !== formValues.confirmPassword)
-      newErrors.confirmPassword = "Passwords do not match";
+        newErrors.confirmPassword = "Passwords do not match";
 
+    
     setErrors(newErrors);
-    if (Object.keys(newErrors).length > 0) return;
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
 
     handleSignUp(formValues.email, formValues.password, formValues.username, formValues.name);
   }
@@ -90,11 +95,12 @@ export default function SignIn() {
       ...prev,
       [name]: value,
     }));
+    console.log(formValues.password, formValues.confirmPassword);
   }
 
   return (
     <div className={styles.container}>
-      <Form onSubmit={handleSubmit} errors={errors} onClearErrors={setErrors}>
+      <Form onSubmit={handleSubmit} errors={errors}>
         <Fieldset.Root className={styles.Fieldset}>
           <Fieldset.Legend className={styles.Legend}>
             Cadastrar-se

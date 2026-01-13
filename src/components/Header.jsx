@@ -19,7 +19,7 @@ export function Header() {
             <Link to="/login" className={styles.link}>
               <UserRound />
             </Link>
-            <Link to="signin" className={styles.link}>
+            <Link to="/signup" className={styles.link}>
               <LogIn />
             </Link>
           </>

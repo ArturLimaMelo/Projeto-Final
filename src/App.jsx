@@ -6,7 +6,7 @@ import { Header } from "./components/Header.jsx";
 import Landing from "./screens/Landing/Landing.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./screens/Login/Login.jsx";
-import SignIn from "./screens/SignIn/SignIn.jsx";
+import SignUp from "./screens/SignIn/SignUp.jsx";
 import Shop from "./screens/Shop/Shop.jsx";
 import { SessionProvider } from "./context/SessionContext";
 
@@ -21,7 +21,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="/shop" element={<Shop />} />
             </Routes>
           </div>

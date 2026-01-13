@@ -10,6 +10,13 @@
     font-style: normal;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .Fieldset {
   background-color: #e3e5e6;
   border-radius: 20px;
@@ -18,7 +25,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: .5rem;
   width: 100%;
   max-width: 24rem;
 }
@@ -69,7 +76,7 @@
 .Error {
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: var(--color-red-800);
+  color: var(--color-red);
 }
 
 .Button {
@@ -104,4 +111,28 @@ p {
 .link {
   text-decoration: none;
   color: var(--color-gray-100);
+}
+
+.passwordContainer {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid red; */
+  gap: .5rem;
+}
+
+.passFields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  /* border: 1px solid red; */
+}
+
+.passwordToggle {
+  background-color: transparent;
+  border: none;
+  /* border: 1px solid blue; */
+  &:hover {
+    cursor: pointer;
+  }
 }

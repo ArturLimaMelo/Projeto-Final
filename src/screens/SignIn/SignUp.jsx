@@ -1,4 +1,4 @@
-import styles from "./SignIn.module.css";
+import styles from "./SignUp.module.css";
 import { Field } from "@base-ui/react/field";
 import { Fieldset } from "@base-ui/react/fieldset";
 import { Form } from "@base-ui/react/form";
@@ -60,30 +60,40 @@ export default function SignIn() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     const newErrors = {};
     if (!formValues.name) newErrors.name = "Nome completo is required";
-    
+
     if (!formValues.username) newErrors.username = "Username is required";
-    
+
     if (!formValues.email) newErrors.email = "Email is required";
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formValues.email && !emailRegex.test(formValues.email)) {
       newErrors.email = "Invalid email format";
     }
-    
+
     if (!formValues.password) newErrors.password = "Password is required";
-    
+
     if (!formValues.confirmPassword) {
       newErrors.confirmPassword = "Confirm Password is required";
-      console.log("Senha: ", formValues.password, " - Confirmação: ", formValues.confirmPassword);
+      console.log(
+        "Senha: ",
+        formValues.password,
+        " - Confirmação: ",
+        formValues.confirmPassword
+      );
     }
 
     if (formValues.password != formValues.confirmPassword) {
-        newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = "Passwords do not match";
       console.log("Senhas não coincidem");
     }
-    console.log(formValues.password, formValues.password.type, formValues.confirmPassword, formValues.confirmPassword.type);
+    console.log(
+      formValues.password,
+      formValues.password.type,
+      formValues.confirmPassword,
+      formValues.confirmPassword.type
+    );
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) {
       return;
@@ -91,8 +101,6 @@ export default function SignIn() {
 
     handleSignUp(formValues.email, formValues.password, formValues.username);
     navigate("/login");
-
-    
   }
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -104,7 +112,11 @@ export default function SignIn() {
       [name]: undefined,
     }));
 
-    if (newFormValues.password && newFormValues.confirmPassword && newFormValues.password !== newFormValues.confirmPassword) {
+    if (
+      newFormValues.password &&
+      newFormValues.confirmPassword &&
+      newFormValues.password !== newFormValues.confirmPassword
+    ) {
       setErrors((prev) => ({
         ...prev,
         confirmPassword: "Senhas não coincidem",
@@ -119,7 +131,7 @@ export default function SignIn() {
 
   return (
     <div className={styles.container}>
-      <Form onSubmit={handleSubmit} errors={errors}>
+      <Form className={styles.form} onSubmit={handleSubmit} errors={errors}>
         <Fieldset.Root className={styles.Fieldset}>
           <Fieldset.Legend className={styles.Legend}>
             Cadastrar-se
@@ -167,17 +179,39 @@ export default function SignIn() {
             <Field.Error className={styles.Error} />
           </Field.Root>
 
-          <Field.Root name="password" className={styles.Field}>
-            <Field.Label className={styles.Label}>Senha</Field.Label>
-            <Field.Control
-              name="password"
-              type={showPassword ? "text" : "password"}
-              required
-              value={formValues.password}
-              onChange={handleInputChange}
-              placeholder="amoempreender123"
-              className={styles.Input}
-            />
+          <div className={styles.passwordContainer}>
+            <div className={styles.passFields}>
+              <Field.Root name="password" className={styles.Field}>
+                <Field.Label className={styles.Label}>Senha</Field.Label>
+                <Field.Control
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={formValues.password}
+                  onChange={handleInputChange}
+                  placeholder="amoempreender123"
+                  className={styles.Input}
+                />
+                <Field.Error className={styles.Error} />
+              </Field.Root>
+
+              <Field.Root name="confirmPassword" className={styles.Field}>
+                <Field.Label className={styles.Label}>
+                  Confirme sua senha
+                </Field.Label>
+                <Field.Control
+                  name="confirmPassword"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={formValues.confirmPassword}
+                  onChange={handleInputChange}
+                  placeholder="amoempreender123"
+                  className={styles.Input}
+                />
+                <Field.Error className={styles.Error} />
+              </Field.Root>
+            </div>
+
             <button
               type="button"
               className={styles.passwordToggle}
@@ -188,24 +222,7 @@ export default function SignIn() {
             >
               {showPassword ? <EyeOffIcon /> : <EyeIcon />}
             </button>
-            <Field.Error className={styles.Error} />
-          </Field.Root>
-
-          <Field.Root name="confirmPassword" className={styles.Field}>
-            <Field.Label className={styles.Label}>
-              Confirme sua senha
-            </Field.Label>
-            <Field.Control
-              name="confirmPassword"
-              type={showPassword ? "text" : "password"}
-              required
-              value={formValues.confirmPassword}
-              onChange={handleInputChange}
-              placeholder="amoempreender123"
-              className={styles.Input}
-            />
-            <Field.Error className={styles.Error} />
-          </Field.Root>
+          </div>
         </Fieldset.Root>
 
         <Checkbox

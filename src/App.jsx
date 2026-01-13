@@ -8,6 +8,7 @@ import Footer from "./components/Footer.jsx";
 import Login from "./screens/Login/Login.jsx";
 import SignUp from "./screens/SignIn/SignUp.jsx";
 import Shop from "./screens/Shop/Shop.jsx";
+import User from "./screens/User/User.jsx";
 import { SessionProvider } from "./context/SessionContext";
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/shop" element={<Shop />} />
+              <Route path="/user" element={<User />} />
             </Routes>
           </div>
 

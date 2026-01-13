@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.userPanel {
+  border: 1px solid red;
+  display: flex;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  border: 1px solid blue;
+  width: fit-content;
+  min-height: 20rem;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: var(--color-gray-600);
+  border-radius: 10px;
+
+  font-weight: 330;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid purple;
+}
+
+.greetings {
+  margin: 0 0 0 1rem;
+}
+
+.cart {
+  background-color: var(--color-gray-600);
+  border-radius: 10px;
+  border: 1px solid green;
+  padding: 1rem;
+  margin: 0.2rem 1rem;
+  font-size: 0.75rem;
+}
+
+.orders {
+  font-size: 1rem;
+  background-color: var(--color-gray-600);
+  border-radius: 10px;
+  border: 1px solid green;
+  padding: 1rem;
+  margin: 0.2rem 1rem;
+  min-height: 20rem;
+}
+
+.storePanel {
+  border: 1px solid orange;
+  width: 20rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--color-gray-600);
+  border-radius: 10px;
+  display: block;
+}
+.storePanel h1 {
+  text-align: center;
+  margin-top: 1rem;
+  border: 1px solid orange;
+}
+
+.start {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+
+  width: 10rem;
+  height: 2rem;
+
+  border-radius: 10px;
+  border: none;
+  background-color: var(--color-blue);
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

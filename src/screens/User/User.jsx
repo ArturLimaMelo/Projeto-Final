@@ -2,6 +2,7 @@ import styles from "./User.module.css";
 import { SessionContext } from "../../context/SessionContext";
 import { useContext, useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase";
+import { Link } from "react-router";
 
 export default function User() {
   const { session } = useContext(SessionContext);
@@ -17,7 +18,7 @@ export default function User() {
       .eq("id", session.user.id)
       .single();
 
-      if (error) {
+    if (error) {
       console.error("Erro ao buscar usuário:", error);
     } else {
       setUserData(data);
@@ -34,8 +35,38 @@ export default function User() {
 
   return (
     <>
-      <h1>User Page</h1>
-      <p>Welcome to the User page, {userData.name}!</p>
+      <div className={styles.container}>
+        <div className={styles.userPanel}>
+          <div className={styles.actions}>
+            <h1 className={styles.greetings}>Meu perfil</h1>
+            <p className={styles.greetings}>
+              <strong>Bem vindo, {userData.name}!</strong>
+            </p>
+            <div className={styles.userInfo}>
+              <p>Email: {userData.email}</p> 
+              <p>UID: {userData.id}</p>
+            </div>
+          </div>
+          <div className={styles.actions}>
+            <Link to="/cart" className={styles.link}>
+              <div className={styles.cart}>
+                <h1>Carrinho</h1>
+              </div>
+            </Link>
+            <div className={styles.orders}>
+              <Link className={styles.link} to="/orders">
+                <h1>Meus Pedidos</h1>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className={styles.storePanel}>
+            <h1>Loja</h1>
+            <button className={styles.start}>
+                Começar?
+            </button>
+        </div>
+      </div>
     </>
   );
 }

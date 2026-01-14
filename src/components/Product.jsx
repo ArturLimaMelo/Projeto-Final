@@ -16,11 +16,14 @@ export default function Product({ product }) {
         <p className={styles.productDescription}>{product.product_description}</p>
 
         <p className={styles.productPrice}>${product.price}</p>
+
+        <p className={styles.stock}>Estoque: {product.stock}</p>
+        
         <button className={styles.productBuy}>
           Adicionar ao Carrinho
           <ShoppingCart />
         </button>
-      </div>
+        </div>
     </>
   );
 }

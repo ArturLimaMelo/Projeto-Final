@@ -16,3 +16,9 @@
   width: 17rem;
   object-fit: cover;
 }
+
+.buyNstock {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}

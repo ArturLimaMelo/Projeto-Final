@@ -43,7 +43,7 @@ export default function User() {
               <strong>Bem vindo, {userData.name}!</strong>
             </p>
             <div className={styles.userInfo}>
-              <p>Email: {userData.email}</p> 
+              <p>Email: {userData.email}</p>
               <p>UID: {userData.id}</p>
             </div>
           </div>
@@ -60,11 +60,11 @@ export default function User() {
             </div>
           </div>
         </div>
-        <div className={styles.storePanel}>
+        <div className={styles.storeSide}>
+          <div className={styles.storePanel}>
             <h1>Loja</h1>
-            <button className={styles.start}>
-                Começar?
-            </button>
+            <button className={styles.start}>Começar?</button>
+          </div>
         </div>
       </div>
     </>

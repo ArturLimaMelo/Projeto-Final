@@ -7,13 +7,13 @@ export default function Product({ product }) {
     <>
       <div className={styles.card}>
         <img
-          src={product.thumbnail}
-          alt={product.title}
+          src={product.product_thumbnail}
+          alt={product.product_title}
           className={styles.productImage}
         />
 
-        <h2 className={styles.productTitle}>{product.title}</h2>
-        <p className={styles.productDescription}>{product.description}</p>
+        <h2 className={styles.productTitle}>{product.product_title}</h2>
+        <p className={styles.productDescription}>{product.product_description}</p>
 
         <p className={styles.productPrice}>${product.price}</p>
         <button className={styles.productBuy}>

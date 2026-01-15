@@ -3,6 +3,7 @@ import { UserRound, LogOut, LogIn, Store } from "lucide-react";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { SessionContext } from "../context/SessionContext";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const { session, handleSignOut } = useContext(SessionContext);
@@ -14,6 +15,7 @@ export function Header() {
       </Link>
 
       <div className={styles.options}>
+        <ThemeToggle/>
         {!session ? (
           <>
             <Link to="/login" className={styles.link}>

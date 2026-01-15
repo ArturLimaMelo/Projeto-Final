@@ -45,6 +45,7 @@ export default function User() {
             <div className={styles.userInfo}>
               <p>Email: {userData.email}</p>
               <p>UID: {userData.id}</p>
+              <p>Loja? {userData.store ? "Sim" : "Não"}</p>
             </div>
           </div>
           <div className={styles.actions}>
@@ -63,7 +64,9 @@ export default function User() {
         <div className={styles.storeSide}>
           <div className={styles.storePanel}>
             <h1>Loja</h1>
-            <button className={styles.start}>Começar?</button>
+            <Link to="/createStore" className={styles.link}>
+              <button className={styles.start}>Começar?</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import { useContext, useState, useEffect } from "react";
 import { SessionContext } from "../../context/SessionContext";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useNavigate } from "react-router";
+import { supabase } from "../../utils/supabase";
 
 export default function SignIn() {
   const { session, handleSignUp, sessionMessage, sessionError } =
@@ -94,6 +95,16 @@ export default function SignIn() {
       formValues.confirmPassword,
       formValues.confirmPassword.type
     );
+
+    try {
+      const { data, error: fetchError } = await supabase.from("usuario").select("email").eq("email", formValues.email);
+      if (data && data.length > 0) {
+        newErrors.email = "Email Já cadastrado";
+      }
+    } catch (error) {
+      console.error("Error checking subscribed emails:", error);
+    }
+
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) {
       return;

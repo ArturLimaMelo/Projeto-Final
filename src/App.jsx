@@ -10,6 +10,8 @@ import SignUp from "./screens/SignIn/SignUp.jsx";
 import Shop from "./screens/Shop/Shop.jsx";
 import User from "./screens/User/User.jsx";
 import Cart from "./screens/Cart/Cart.jsx";
+import Stores from "./screens/Stores/Stores.jsx";
+import CreateStores from "./screens/Stores/CreateStore.jsx";
 import { SessionProvider } from "./context/SessionContext";
 
 export default function App() {
@@ -27,6 +29,8 @@ export default function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/user" element={<User />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/store" element={<Stores />} />
+              <Route path="/createStore" element={<CreateStores />} />
             </Routes>
           </div>
 

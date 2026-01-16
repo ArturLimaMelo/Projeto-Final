@@ -12,28 +12,33 @@ import User from "./screens/User/User.jsx";
 import Cart from "./screens/Cart/Cart.jsx";
 import Stores from "./screens/Stores/Stores.jsx";
 import { SessionProvider } from "./context/SessionContext";
+import { CartProvider } from "./context/CartContext";
+import Checkout from "./screens/Checkout/Checkout.jsx";
 
 export default function App() {
   return (
     <>
       <SessionProvider>
-        <div className="app-container">
-          <Header />
+        <CartProvider>
+          <div className="app-container">
+            <Header />
 
-          <div className="app-content">
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/shop" element={<Shop />} />
-              <Route path="/user" element={<User />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/store" element={<Stores />} />
-            </Routes>
+            <div className="app-content">
+              <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/user" element={<User />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/store" element={<Stores />} />
+                <Route path="/checkout" element={<Checkout />} />
+              </Routes>
+            </div>
+
+            <Footer />
           </div>
-
-          <Footer />
-        </div>
+        </CartProvider>
       </SessionProvider>
     </>
   );

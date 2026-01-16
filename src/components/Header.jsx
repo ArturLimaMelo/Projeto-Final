@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import { UserRound, LogOut, LogIn, Store } from "lucide-react";
+import { UserRound, LogOut, LogIn, Store, ShoppingBasket } from "lucide-react";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { SessionContext } from "../context/SessionContext";
@@ -37,6 +37,9 @@ export function Header() {
         )}
         <Link to="/shop" className={styles.link}>
           <Store />
+        </Link>
+        <Link to="/cart" className={styles.link}>
+          <ShoppingBasket />
         </Link>
       </div>
     </header>

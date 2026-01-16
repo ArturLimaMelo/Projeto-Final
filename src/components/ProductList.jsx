@@ -3,7 +3,7 @@ import Product from "./Product.jsx";
 
 export default function ProductList({ products }) {
 
-    console.log(products);
+    //console.log(products);
 
     return (
         <>

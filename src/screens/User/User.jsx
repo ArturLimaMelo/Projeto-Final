@@ -11,37 +11,120 @@ import { Button } from "@base-ui/react/button";
 export default function User() {
   const { session } = useContext(SessionContext);
   const [userData, setUserData] = useState(null);
+  const [userStoreData, setUserStoreData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState({});
   const [buildStore, setBuildStore] = useState(false);
 
-  async function fetchUserData() {
-    if (!session?.user) return;
+ async function fetchUserData() {
+  if (!session?.user) return;
 
+  setLoading(true);
+
+  const { data, error } = await supabase
+    .from("usuario")
+    .select("*")
+    .eq("id", session.user.id)
+    .single();
+
+  if (error) {
+    console.error("Erro ao buscar usuário:", error);
+    setLoading(false);
+    return;
+  }
+
+  setUserData(data);
+
+  if (data.store === true) {
     const { data, error } = await supabase
-      .from("usuario")
+      .from("loja")
       .select("*")
-      .eq("id", session.user.id)
+      .eq("store_owner_id", session.user.id)
       .single();
 
     if (error) {
-      console.error("Erro ao buscar usuário:", error);
-    } else {
-      setUserData(data);
+      console.error("Erro ao buscar loja:", userStoreError);
+      setLoading(false);
+      return;
     }
 
-    setLoading(false);
+    setUserStoreData(data);
+
   }
+
+  setLoading(false);
+}
+
 
   useEffect(() => {
     fetchUserData();
-    console.log("Build Store:", buildStore);
   }, [session]);
 
   if (loading) return <p>Loading user data...</p>;
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (userData.store) {
+      setErrors({ form: "Você já possui uma loja." });
+      return;
+    }
+
+    setLoading(true);
+    setErrors({});
+
+    const formData = new FormData(e.currentTarget);
+
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const thumbnail = formData.get("thumbnail");
+
+    if (!title || !description || !thumbnail) {
+      setErrors({ form: "Todos os campos são obrigatórios." });
+      setLoading(false);
+      return;
+    }
+
+    const newStore = {
+      store_owner_id: session.user.id,
+      store_title: title,
+      store_description: description,
+      store_thumbnail: thumbnail,
+    };
+
+    const { data: storeData, error: storeError } = await supabase
+      .from("loja")
+      .insert([newStore])
+      .select()
+      .single();
+
+    if (storeError) {
+      console.error("Erro ao criar loja:", storeError);
+      setErrors({ form: "Erro ao criar loja." });
+      setLoading(false);
+      return;
+    }
+
+    const { error: userError } = await supabase
+      .from("usuario")
+      .update({ store: true })
+      .eq("id", session.user.id);
+
+    if (userError) {
+      console.error("Erro ao atualizar usuário:", userError);
+      setErrors({ form: "Erro ao atualizar usuário." });
+      setLoading(false);
+      return;
+    }
+
+    setUserData((prev) => ({
+      ...prev,
+      store: true,
+    }));
+
+    setBuildStore(false);
+
+    setLoading(false);
   }
 
   return (
@@ -78,7 +161,7 @@ export default function User() {
             style={{ height: !buildStore ? "25rem" : "fit-content" }}
           >
             <h1>Loja</h1>
-            {!buildStore ? (
+            {buildStore === false && userData.store === false ? (
               <>
                 <button
                   className={styles.start}
@@ -87,7 +170,7 @@ export default function User() {
                   Começar?
                 </button>
               </>
-            ) : (
+            ) : buildStore === true && userData.store === false ? (
               <>
                 <Form
                   className={styles.Form}
@@ -121,7 +204,7 @@ export default function User() {
                   </Field.Root>
                   <Field.Root name="thumbnail" className={styles.Field}>
                     <Field.Label className={styles.Label}>
-                      Imagem da loja
+                      Imagem da loja (url)
                     </Field.Label>
                     <Field.Control
                       type="url"
@@ -151,6 +234,16 @@ export default function User() {
                   </Button>
                 </Form>
               </>
+            ) : buildStore === false && userData.store === true ? (
+              <>
+              <div className={styles.store_info_container}>
+                <h2>{userStoreData.store_title}</h2>
+                <p>{userStoreData.store_description}</p>
+                <img className={styles.store_img} src={userStoreData.store_thumbnail} alt="imagem da loja" />
+              </div>
+              </>
+            ) : (
+              <></>
             )}
           </div>
         </div>

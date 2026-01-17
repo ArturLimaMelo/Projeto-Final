@@ -20,7 +20,7 @@ export function ThemeToggle() {
       className={styles.toggleButton}
       aria-label="Toggle theme"
     > 
-      {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+      {theme === 'light' ? <SunIcon /> : <MoonIcon />}
     </button>
   );
 }

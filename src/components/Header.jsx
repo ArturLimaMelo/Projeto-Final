@@ -44,5 +44,6 @@ export function Header() {
       </div>
     </header>
     // Seria legal colocar alguma coisa para simbolizar se está dentro de uma sessão ou não, equipe do frontend é com vocês
+    // Talvez mudar a cor do ícone do usuário ou algo do tipo?? nao entendi direito amigo, mais detalhes por favor abraaaaaço :D
   );
 }

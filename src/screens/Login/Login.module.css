@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -8,6 +9,7 @@
     font-optical-sizing: auto;
     font-weight: 730;
     font-style: normal;
+   background-color: var(--card-login-bg);
 }
 
 .form {
@@ -18,7 +20,7 @@
 }
 
 .Fieldset {
-  background-color: #e3e5e6;
+  background-color: var(--card-bg);
   border-radius: 20px;
   border: 0;
   margin: 1rem;
@@ -37,7 +39,7 @@
   font-size: 1.125rem;
   line-height: 1.75rem;
   letter-spacing: -0.0025em;
-  color: var(--color-gray-50);
+  color: var(--color-gray-950);
 }
 
 .Field {
@@ -66,7 +68,7 @@
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 500;
-  color: var(--color-gray-50);
+  color: var(--color-gray-950);
 }
 
 .Input {
@@ -122,10 +124,13 @@
 }
 
 .link {
-  color: var(--color-gray-100);
+  color: var(--color-gray-600);
   text-decoration: none;
   transition: color 0.2s;
   &:hover {
     color: var(--color-blue);
   }
+}
+.container p {
+  color: var(--color-gray-950);
 }

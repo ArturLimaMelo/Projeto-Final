@@ -3,6 +3,7 @@
   --color-blue: oklch(69% 50% 264deg);
   --color-red: oklch(80% 55% 31deg);
 
+  --color-gray-0: oklch(10% 0.25% 264deg);
   --color-gray-50: oklch(17% 0.25% 264deg);
   --color-gray-100: oklch(28% 0.75% 264deg / 65%);
   --color-gray-200: oklch(29% 0.75% 264deg / 80%);
@@ -18,6 +19,8 @@
   /* Card tokens for consistent card styling */
   --card-bg: var(--color-gray-50);
   --card-border: oklch(90% 0.6% 264deg / 70%);
+  --card-login-bg: var(--color-gray-0);
+  
 
 
 }
@@ -30,6 +33,7 @@
   --color-gray-50: oklch(98% 0.25% 264deg);
   --color-gray-100: oklch(12% 9.5% 264deg / 5%);
   --color-gray-200: oklch(12% 9% 264deg / 7%);
+  --cloro-gray-250: oklch(12% 8.8% 264deg / 10%);
   --color-gray-300: oklch(12% 8.5% 264deg / 17%);
   --color-gray-400: oklch(12% 8% 264deg / 38%);
   --color-gray-500: oklch(12% 7.5% 264deg / 50%);
@@ -43,5 +47,6 @@
   --card-bg: var(--color-gray-50);
   --card-border: var(--color-gray-200);
   --card-text: var(--color-gray-950);
+  --card-login-bg: var(--color-gray-250);
 
 }

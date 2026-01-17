@@ -102,9 +102,9 @@ export default function Login() {
         </Fieldset.Root>
 
         <p>
-          Ainda não tem uma conta?{" "}
-          <Link to="/signin" className={styles.link}>
-            {" "}
+          Ainda não tem uma conta? {" "}
+          <Link to="/signup" className={styles.link}> 
+            {" "} 
             Crie uma!{" "}
           </Link>
         </p>

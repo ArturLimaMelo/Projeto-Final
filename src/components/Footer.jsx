@@ -25,7 +25,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <p className={styles.copyright}>© 2024 NeoMarketX - NMX. Todos os direitos reservados.</p>
+        <p className={styles.copyright}>© 2025 NeoMarketX - NMX. Todos os direitos reservados.</p>
       </footer>
     </>
   );

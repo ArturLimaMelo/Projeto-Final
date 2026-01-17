@@ -222,7 +222,7 @@ export default function SignIn() {
                 <Field.Error className={styles.Error} />
               </Field.Root>
             </div>
-
+    
             <button
               type="button"
               className={styles.passwordToggle}
@@ -239,6 +239,7 @@ export default function SignIn() {
         <Checkbox
           label="Deseja receber ofertas no seu email?"
           color="neutral"
+          className={styles.checkbox}
         />
 
         <Button type="submit" className={styles.Button}>

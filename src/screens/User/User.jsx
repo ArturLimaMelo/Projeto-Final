@@ -16,45 +16,43 @@ export default function User() {
   const [errors, setErrors] = useState({});
   const [buildStore, setBuildStore] = useState(false);
 
- async function fetchUserData() {
-  if (!session?.user) return;
+  async function fetchUserData() {
+    if (!session?.user) return;
 
-  setLoading(true);
+    setLoading(true);
 
-  const { data, error } = await supabase
-    .from("usuario")
-    .select("*")
-    .eq("id", session.user.id)
-    .single();
-
-  if (error) {
-    console.error("Erro ao buscar usuário:", error);
-    setLoading(false);
-    return;
-  }
-
-  setUserData(data);
-
-  if (data.store === true) {
     const { data, error } = await supabase
-      .from("loja")
+      .from("usuario")
       .select("*")
-      .eq("store_owner_id", session.user.id)
+      .eq("id", session.user.id)
       .single();
 
     if (error) {
-      console.error("Erro ao buscar loja:", userStoreError);
+      console.error("Erro ao buscar usuário:", error);
       setLoading(false);
       return;
     }
 
-    setUserStoreData(data);
+    setUserData(data);
 
+    if (data.store === true) {
+      const { data, error } = await supabase
+        .from("loja")
+        .select("*")
+        .eq("store_owner_id", session.user.id)
+        .single();
+
+      if (error) {
+        console.error("Erro ao buscar loja:", userStoreError);
+        setLoading(false);
+        return;
+      }
+
+      setUserStoreData(data);
+    }
+
+    setLoading(false);
   }
-
-  setLoading(false);
-}
-
 
   useEffect(() => {
     fetchUserData();
@@ -236,12 +234,16 @@ export default function User() {
               </>
             ) : buildStore === false && userData.store === true ? (
               <>
-              <div className={styles.store_info_container}>
-                <h2>{userStoreData.store_title}</h2>
-                <p>{userStoreData.store_description}</p>
-                <img className={styles.store_img} src={userStoreData.store_thumbnail} alt="imagem da loja" />
-              </div>
-              </>
+                  <Link to="/store" className={styles.store_info_container}>
+                    <h2>{userStoreData.store_title}</h2>
+                    <p>{userStoreData.store_description}</p>
+                    <img
+                      className={styles.store_img}
+                      src={userStoreData.store_thumbnail}
+                      alt="imagem da loja"
+                    />
+                  </Link>
+                </>
             ) : (
               <></>
             )}

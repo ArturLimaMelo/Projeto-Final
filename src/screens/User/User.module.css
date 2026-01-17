@@ -214,6 +214,8 @@
 }
 
 .store_info_container {
+  text-decoration: none;
+  color: var(--color-gray-950);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -223,6 +225,11 @@
 }
 
 .store_img {
-  width: 15rem;
+  width: 14rem;
   border-radius: 50%;
+  transition: .3s;
+    &:hover {
+      width: 15rem;
+      border-radius: 10px;
+    }
 }

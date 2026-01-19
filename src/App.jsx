@@ -14,6 +14,7 @@ import Stores from "./screens/Stores/Stores.jsx";
 import { SessionProvider } from "./context/SessionContext";
 import { CartProvider } from "./context/CartContext";
 import Checkout from "./screens/Checkout/Checkout.jsx";
+import CriarProduto from "./screens/CriarProduto/CriarProduto";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/store" element={<Stores />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/produto" element={<CriarProduto />} />
               </Routes>
             </div>
 

@@ -1,0 +1,156 @@
+.criarProdutoContainer {
+     min-height: 100vh;
+     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+     padding: 40px 20px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.formWrapper {
+     background: white;
+     padding: 40px;
+     border-radius: 12px;
+     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+     width: 100%;
+     max-width: 600px;
+}
+
+.formWrapper h2 {
+     text-align: center;
+     color: #333;
+     margin-bottom: 30px;
+     font-size: 28px;
+     font-weight: 600;
+}
+
+.form {
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+}
+
+.formGroup {
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+}
+
+.formGroup label {
+     color: #333;
+     font-weight: 500;
+     font-size: 14px;
+}
+
+.formGroup input,
+.formGroup textarea {
+     padding: 12px 15px;
+     border: 1px solid #ddd;
+     border-radius: 6px;
+     font-size: 14px;
+     font-family: inherit;
+     transition: all 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+     outline: none;
+     border-color: #4CAF50;
+     box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+.readOnlyField {
+     background-color: #f5f5f5;
+     cursor: not-allowed;
+     color: #666;
+}
+
+.readOnlyField:focus {
+     border-color: #ddd;
+     box-shadow: none;
+}
+
+.formGroup input[type="file"] {
+     padding: 8px;
+     cursor: pointer;
+}
+
+.formGroup textarea {
+     resize: vertical;
+     min-height: 100px;
+}
+
+.imagePreview {
+     margin-top: 12px;
+     padding: 15px;
+     background: #f9f9f9;
+     border-radius: 6px;
+     display: flex;
+     justify-content: center;
+}
+
+.imagePreview img {
+     max-width: 100%;
+     max-height: 250px;
+     border-radius: 6px;
+     object-fit: contain;
+}
+
+.submitBtn {
+     padding: 14px 30px;
+     background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+     color: white;
+     border: none;
+     border-radius: 6px;
+     font-size: 16px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     margin-top: 10px;
+}
+
+.submitBtn:hover:not(:disabled) {
+     transform: translateY(-2px);
+     box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.submitBtn:active:not(:disabled) {
+     transform: translateY(0);
+}
+
+.submitBtn:disabled {
+     opacity: 0.6;
+     cursor: not-allowed;
+     background: linear-gradient(135deg, #999 0%, #777 100%);
+}
+
+.errorMessage {
+     padding: 12px 15px;
+     background-color: #ffebee;
+     border: 1px solid #ef5350;
+     color: #c62828;
+     border-radius: 6px;
+     margin-bottom: 20px;
+     font-size: 14px;
+     font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+     .criarProdutoContainer {
+          padding: 20px 10px;
+     }
+
+     .formWrapper {
+          padding: 25px;
+     }
+
+     .formWrapper h2 {
+          font-size: 22px;
+          margin-bottom: 20px;
+     }
+
+     .form {
+          gap: 15px;
+     }
+}

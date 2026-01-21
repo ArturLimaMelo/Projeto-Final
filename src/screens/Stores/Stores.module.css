@@ -1,18 +1,18 @@
 .container {
-
+  padding: 0.5rem;
 }
 
 .storeHead {
-padding: 1rem;
-border: 1px solid magenta;
+  padding: 1rem;
+  border: 1px solid magenta;
 
-display: flex;
-align-items: center;
-gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .store_img {
-    width: 12rem;
-    border-radius: 50%;
-    background-color: var(--);
+  width: 12rem;
+  border-radius: 50%;
+  background-color: var(--);
 }

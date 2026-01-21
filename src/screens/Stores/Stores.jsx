@@ -3,11 +3,15 @@ import styles from "./Stores.module.css";
 import { useState, useEffect, useContext } from "react";
 import { SessionContext } from "../../context/SessionContext";
 import { supabase } from "../../utils/supabase";
+import ProductList from "../../components/ProductList.jsx";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 export default function Stores() {
   const { session } = useContext(SessionContext);
   const [userData, setUserData] = useState(null);
   const [storeData, setStoreData] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
   const [loading, setLoading] = useState(true);
 
   async function fetchUserNstoreData() {
@@ -47,11 +51,38 @@ export default function Stores() {
     setLoading(false);
   }
 
+  async function fetchProducts(storeId) {
+    const { data, error } = await supabase
+      .from("produto")
+      .select("*")
+      .eq("sold_by", storeId);
+    if (data.length === 0) {
+      setProducts([]);
+      setLoadingProducts(false);
+      return;
+    }
+
+    if (error) {
+      console.error("Erro ao buscar produtos:", error);
+      setLoadingProducts(false);
+      return;
+    }
+
+    setProducts(data);
+    setLoadingProducts(false);
+  }
+
   useEffect(() => {
     fetchUserNstoreData();
     console.log("UserData", userData);
     console.log("StoreData", storeData);
   }, [session]);
+
+  useEffect(() => {
+    if (storeData?.store_id) {
+      fetchProducts(storeData.store_id);
+    }
+  }, [storeData]);
 
   if (!storeData) {
     return <p>Carregando...</p>;
@@ -70,6 +101,22 @@ export default function Stores() {
           <h3>{storeData.store_description}</h3>
         </div>
       </div>
+
+      <main className={styles.main}>
+        <h2>Produtos</h2>
+        {loadingProducts ? (
+          <CircularProgress
+            color="primary"
+            determinate={false}
+            size="sm"
+            variant="plain"
+          />
+        ) : session.user.id === storeData.store_owner_id ? (
+          <ProductList products={products} mode={true} />
+        ) : (
+          <ProductList products={products} />
+        )}
+      </main>
     </div>
   );
 }

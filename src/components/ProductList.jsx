@@ -1,7 +1,7 @@
 import styles from "./ProductList.module.css";
 import Product from "./Product.jsx";
 
-export default function ProductList({ products }) {
+export default function ProductList({ products, mode}) {
 
     //console.log(products);
 
@@ -10,7 +10,7 @@ export default function ProductList({ products }) {
         <div className={styles.table}>
             {
                 products.map((product) => (
-                    <Product product={product} />
+                    <Product key={product.id} product={product} mode={mode} />
                 ))
             }
         </div>

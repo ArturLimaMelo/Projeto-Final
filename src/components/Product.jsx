@@ -1,7 +1,8 @@
 import styles from "./Product.module.css";
 import { ShoppingCart, SquarePen } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
+import { supabase } from "../utils/supabase";
 
 import { Field } from "@base-ui/react/field";
 import { Form } from "@base-ui/react/form";
@@ -12,15 +13,75 @@ export default function Product({ product, mode }) {
 
   const [editing, setEditing] = useState(false);
 
+  const [localProduct, setLocalProduct] = useState(product);
+  const [thumbnail, setThumbnail] = useState(product.product_thumbnail || "");
+  const [title, setTitle] = useState(product.product_title || "");
+  const [description, setDescription] = useState(product.product_description || "");
+  const [price, setPrice] = useState(product.price || 0);
+  const [stock, setStock] = useState(product.stock ?? 0);
+
+  useEffect(() => {
+    setLocalProduct(product);
+    setThumbnail(product.product_thumbnail || "");
+    setTitle(product.product_title || "");
+    setDescription(product.product_description || "");
+    setPrice(product.price || 0);
+    setStock(product.stock ?? 0);
+  }, [product]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const updates = {
+      product_thumbnail: thumbnail,
+      product_title: title,
+      product_description: description,
+      price: Number(price),
+      stock: Number(stock),
+    };
+
+    try {
+        const productKey = product.product_id ?? product.id;
+
+
+        let resp = await supabase.from("produto").update(updates).eq("product_id", productKey).select();
+        if (resp.error) {
+          console.error("Erro ao atualizar produto (product_id):", resp.error);
+          return;
+        }
+
+        let updated = (resp.data && resp.data[0]) ?? null;
+
+        if (!updated) {
+          const fb = await supabase.from("produto").update(updates).eq("id", productKey).select();
+          if (fb.error) {
+            console.error("Erro ao atualizar produto (id fallback):", fb.error);
+            return;
+          }
+          updated = (fb.data && fb.data[0]) ?? null;
+        }
+
+        if (!updated) {
+          console.warn("Atualização retornou 0 linhas para produto:", productKey);
+          return;
+        }
+
+        setLocalProduct((prev) => ({ ...prev, ...updated }));
+        setEditing(false);
+    } catch (err) {
+      console.error("Erro inesperado ao atualizar produto:", err);
+    }
+  }
+
   if (mode && editing) {
     return (
       <>
         <div className={styles.card} style={{ height: "fit-content" }}>
-          <Form className={styles.Form}>
+          <Form className={styles.Form} onSubmit={handleSubmit}>
             <img
-              src={product.product_thumbnail}
+              src={thumbnail}
               className={styles.productImage}
-              alt={product.product_title}
+              alt={title}
             />
             <Field.Root name="thumbnail" className={styles.Field}>
               <Field.Label className={styles.Label}>
@@ -30,7 +91,8 @@ export default function Product({ product, mode }) {
                 type="text"
                 required
                 placeholder="url da imagem"
-                defaultValue={product.product_thumbnail}
+                value={thumbnail}
+                onChange={(e) => setThumbnail(e.target.value)}
                 className={styles.Input}
               />
               <Field.Error className={styles.Error} />
@@ -42,7 +104,8 @@ export default function Product({ product, mode }) {
                 type="text"
                 required
                 placeholder="Minha loja 123"
-                defaultValue={product.product_title}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 className={styles.Input}
               />
               <Field.Error className={styles.Error} />
@@ -54,7 +117,8 @@ export default function Product({ product, mode }) {
                 type="text"
                 required
                 placeholder="Compre produtos incríveis!"
-                defaultValue={product.product_description}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 className={styles.Input}
               />
               <Field.Error className={styles.Error} />
@@ -65,7 +129,20 @@ export default function Product({ product, mode }) {
                 type="number"
                 required
                 placeholder="price"
-                defaultValue={product.price}
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                className={styles.Input}
+              />
+              <Field.Error className={styles.Error} />
+            </Field.Root>
+            <Field.Root name="stock" className={styles.Field}>
+              <Field.Label className={styles.Label}>Estoque</Field.Label>
+              <Field.Control
+                type="number"
+                required
+                placeholder="stock"
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
                 className={styles.Input}
               />
               <Field.Error className={styles.Error} />
@@ -77,7 +154,7 @@ export default function Product({ product, mode }) {
                 focusableWhenDisabled
                 className={styles.Button}
               >
-                Submit
+                Salvar
               </Button>
 
               <Button
@@ -96,19 +173,19 @@ export default function Product({ product, mode }) {
       <>
         <div className={styles.card}>
           <img
-            src={product.product_thumbnail}
-            alt={product.product_title}
+            src={localProduct.product_thumbnail}
+            alt={localProduct.product_title}
             className={styles.productImage}
           />
 
-          <h2 className={styles.productTitle}>{product.product_title}</h2>
+          <h2 className={styles.productTitle}>{localProduct.product_title}</h2>
           <p className={styles.productDescription}>
-            {product.product_description}
+            {localProduct.product_description}
           </p>
 
-          <p className={styles.productPrice}>${product.price}</p>
+          <p className={styles.productPrice}>${localProduct.price}</p>
 
-          <p className={styles.stock}>Estoque: {product.stock}</p>
+          <p className={styles.stock}>Estoque: {localProduct.stock}</p>
           <button className={styles.Button} onClick={() => setEditing(true)}>
             Editar
             <SquarePen />

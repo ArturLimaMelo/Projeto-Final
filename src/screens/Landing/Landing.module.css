@@ -1,11 +1,16 @@
 .splineWrapper {
   position: relative;
-  width: 100%;
-  min-height: 60vh;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
 }
 
-@media (min-width: 1024px) {
+/* Mobile */
+@media (max-width: 640px) {
   .splineWrapper {
-    height: 100vh;
+    width: 160vw;
+    height: 80vh;
   }
 }

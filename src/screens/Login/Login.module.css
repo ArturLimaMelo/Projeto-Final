@@ -82,7 +82,7 @@
   font-family: inherit;
   font-size: 1rem;
   background-color: transparent;
-  color: var(--color-gray-50);
+  color: var(--color-gray-950);
 
   &:focus {
     outline: 2px solid var(--color-blue);

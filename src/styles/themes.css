@@ -4,6 +4,7 @@
   --color-red: oklch(80% 55% 31deg);
 
   --color-gray-0: oklch(10% 0.25% 264deg);
+  --color-header: oklch(16.886% 0.00208 286.046 / 0.233);
   --color-gray-50: oklch(17% 0.25% 264deg);
   --color-gray-100: oklch(28% 0.75% 264deg / 65%);
   --color-gray-200: oklch(29% 0.75% 264deg / 80%);
@@ -27,9 +28,11 @@
 
 :root[data-theme="dark"]{
 
+  
   --color-blue: oklch(45% 50% 264deg);
   --color-red: oklch(50% 55% 31deg);
 
+  --color-header: oklch(97.941% 0.00143 285.209 / 0.212);
   --color-gray-50: oklch(98% 0.25% 264deg);
   --color-gray-100: oklch(12% 9.5% 264deg / 5%);
   --color-gray-200: oklch(12% 9% 264deg / 7%);

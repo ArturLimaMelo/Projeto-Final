@@ -1,2 +1,11 @@
-.spline {
+.splineWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+}
+
+@media (min-width: 1024px) {
+  .splineWrapper {
+    height: 100vh;
+  }
 }

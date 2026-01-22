@@ -15,11 +15,11 @@ export function Header() {
       </Link>
 
       <div className={styles.options}>
-        <ThemeToggle/>
+        <ThemeToggle className={styles.icon} />
         {!session ? (
           <>
             <Link to="/login" className={styles.link}>
-              <UserRound />
+              <UserRound className={styles.icon} />
             </Link>
             <Link to="/signup" className={styles.link}>
               <LogIn />
@@ -28,18 +28,18 @@ export function Header() {
         ) : (
           <>
             <Link to="/user" className={styles.link}>
-              <UserRound />
+              <UserRound className={styles.icon} />
             </Link>
             <button onClick={handleSignOut} className={styles.button}>
-              <LogOut />
+              <LogOut className={styles.icon} />
             </button>
           </>
         )}
         <Link to="/shop" className={styles.link}>
-          <Store />
+          <Store className={styles.icon} />
         </Link>
         <Link to="/cart" className={styles.link}>
-          <ShoppingBasket />
+          <ShoppingBasket className={styles.icon} />
         </Link>
       </div>
     </header>

@@ -12,6 +12,21 @@
   height: 100%;
 }
 
+@media (max-width: 640px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .userPanel {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }  
+}
+
 .userPanel {
   border: 1px solid var(--card-border);
   display: flex;

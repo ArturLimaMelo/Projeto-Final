@@ -4,15 +4,8 @@ import Spline from "@splinetool/react-spline";
 
 export default function Landing() {
   return (
-    <>
+    <>   
          <Spline scene="https://prod.spline.design/nhe4VadwsE4vtqiX/scene.splinecode" />
     </>
   );
 }
-
-/* <CircularProgress
-  color="primary"
-  determinate={false}
-  size="sm"
-  variant="plain"
-/> */

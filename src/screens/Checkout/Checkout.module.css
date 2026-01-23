@@ -1,0 +1,701 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 4rem;
+  width: 100%;
+  background-color: var(--card-bg);
+  font-family:
+    "Raleway",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.container > h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gray-950);
+  margin-bottom: 1rem;
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+/* ===== Seções principais - estilos para cards  ===== */
+.userInfo,
+.addressInfo,
+.payment,
+.SummaryPanel {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease-out;
+}
+
+.userInfo:hover,
+.addressInfo:hover,
+.payment:hover,
+.SummaryPanel:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Títulos das seções ===== */
+.userInfo h1,
+.addressInfo h1,
+.payment h1,
+.SummaryPanel h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-blue);
+  padding-bottom: 1rem;
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.userInfo h1 svg,
+.addressInfo h1 svg,
+.payment h1 svg,
+.SummaryPanel h1 svg {
+  color: var(--color-blue);
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ===== User Info ===== */
+.userInfo p {
+  font-size: 1rem;
+  color: var(--color-gray-600);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userInfo p strong {
+  font-weight: 600;
+  color: var(--color-gray-950);
+  min-width: 60px;
+}
+
+/* ===== Address Info ===== */
+.addressSelector {
+  background-color: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.addressSelector h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  margin-bottom: 1rem;
+}
+
+.addressList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.addressOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: transparent;
+  border: 2px solid var(--color-gray-200);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addressOption input[type="radio"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: var(--color-blue);
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.addressOption:has(input[type="radio"]:checked) {
+  background-color: rgba(59, 130, 246, 0.08);
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.addressLabel {
+  flex: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.addressLabel strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  margin-bottom: 0.25rem;
+}
+
+.addressLabel p {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+  line-height: 1.5;
+}
+
+.addNewAddressBtn {
+  background-color: transparent;
+  border: 2px dashed var(--color-blue);
+  color: var(--color-blue);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.addNewAddressBtn:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: var(--color-blue);
+}
+
+/* ===== Form - labels, campos, erros, botões do form ===== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.Fieldset {
+  background-color: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.Legend {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-blue);
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.Field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.Label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+}
+
+.Input {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--color-gray-300);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--color-gray-950);
+  background-color: transparent;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.Input:focus {
+  outline: none;
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.Input::placeholder {
+  color: var(--color-gray-400);
+}
+
+.Error {
+  font-size: 0.8rem;
+  color: var(--color-red);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.formButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.Button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.Button:active {
+  transform: translateY(0);
+}
+
+.cancelBtn {
+  padding: 0.875rem 2rem;
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-950);
+  border: 1.5px solid var(--color-gray-300);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.cancelBtn:hover {
+  background-color: var(--color-gray-300);
+  border-color: var(--color-gray-400);
+}
+
+/* ===== Payment  - opções de pagamento com o estilo ===== */
+.paymentForm {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.paymentFieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.paymentLegend {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-blue);
+  margin-bottom: 0.5rem;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background-color: rgba(59, 130, 246, 0.03);
+  border: 2px solid var(--color-gray-200);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paymentOption input[type="radio"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: var(--color-blue);
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.paymentOption:has(input[type="radio"]:checked) {
+  background-color: rgba(59, 130, 246, 0.12);
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.paymentLabel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.paymentName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+}
+
+.paymentDesc {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.paymentInput {
+  display: none;
+}
+
+/* ===== Summary Panel  - produtos, scrollbar, botão de finalização ===== */
+.SummaryPanel {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.08) 0%,
+    rgba(59, 130, 246, 0.04) 100%
+  );
+  border: 2px solid var(--color-blue);
+  position: sticky;
+  top: 2rem;
+}
+
+.productsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.productsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.productsList::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.productsList::-webkit-scrollbar-thumb {
+  background: var(--color-blue);
+  border-radius: 10px;
+}
+
+.productsList p {
+  color: var(--color-gray-600);
+  text-align: center;
+  padding: 1rem;
+}
+
+.orderProduct {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.orderProduct:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.orderProduct img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.productInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.productInfo h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  line-height: 1.4;
+}
+
+.productInfo p {
+  font-size: 0.85rem;
+  color: var(--color-gray-600);
+}
+
+.price {
+  font-weight: 700 !important;
+  color: var(--color-blue) !important;
+  font-size: 1rem !important;
+}
+
+.SummaryPanel > p {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.SummaryPanel > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.SummaryPanel > button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.SummaryPanel > button:active {
+  transform: translateY(0);
+}
+
+.SummaryPanel > button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ===== Responsive Design - mobile ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .container > h1 {
+    font-size: 1.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .userInfo,
+  .addressInfo,
+  .payment,
+  .SummaryPanel {
+    padding: 1.25rem;
+  }
+
+  .userInfo h1,
+  .addressInfo h1,
+  .payment h1,
+  .SummaryPanel h1 {
+    font-size: 1.25rem;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .formButtons {
+    flex-direction: column;
+  }
+
+  .Button,
+  .cancelBtn {
+    width: 100%;
+  }
+
+  .SummaryPanel {
+    position: static;
+  }
+
+  .productsList {
+    max-height: none;
+  }
+
+  .addressOption,
+  .paymentOption {
+    padding: 1rem;
+  }
+
+  .orderProduct {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .orderProduct img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .container > h1 {
+    font-size: 1.5rem;
+  }
+
+  .userInfo,
+  .addressInfo,
+  .payment,
+  .SummaryPanel {
+    padding: 1rem;
+  }
+
+  .userInfo h1,
+  .addressInfo h1,
+  .payment h1,
+  .SummaryPanel h1 {
+    font-size: 1.1rem;
+    gap: 0.4rem;
+  }
+
+  .userInfo h1 svg,
+  .addressInfo h1 svg,
+  .payment h1 svg,
+  .SummaryPanel h1 svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .Button,
+  .cancelBtn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .addressLabel strong,
+  .paymentName {
+    font-size: 0.95rem;
+  }
+
+  .addressLabel p,
+  .paymentDesc {
+    font-size: 0.8rem;
+  }
+
+  .productsList {
+    gap: 0.75rem;
+  }
+
+  .orderProduct img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* ===== Dark Mode Adjustments  - ajustes e transições ===== */
+@media (prefers-color-scheme: dark) {
+  .userInfo p,
+  .addressLabel p,
+  .paymentDesc,
+  .productInfo p {
+    color: var(--color-gray-500);
+  }
+
+  .addressOption:has(input[type="radio"]:checked),
+  .paymentOption:has(input[type="radio"]:checked) {
+    background-color: rgba(59, 130, 246, 0.15);
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

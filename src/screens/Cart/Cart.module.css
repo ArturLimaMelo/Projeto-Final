@@ -1,0 +1,447 @@
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 4rem;
+  width: 100%;
+  background-color: var(--card-bg);
+  font-family:
+    "Raleway",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  min-height: calc(100vh - 80px);
+}
+
+.container > p {
+  text-align: center;
+  color: var(--color-gray-600);
+  font-size: 1.125rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* ====== PAINEL DE PRODUTOS ====== */
+.productsPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.productsPanel h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gray-950);
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-blue);
+}
+
+/* ====== LISTA DE PRODUTOS ====== */
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.product > p {
+  text-align: center;
+  color: var(--color-gray-600);
+  padding: 2rem;
+  background-color: rgba(59, 130, 246, 0.05);
+  border-radius: 1rem;
+  border: 1px dashed var(--color-blue);
+  font-size: 1rem;
+}
+/* ====== ITEM DO CARRINHO - grid ====== */
+.productItem {
+  display: grid;
+  grid-template-columns: 120px 1fr auto auto auto;
+  gap: 1.5rem;
+  align-items: center;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease-out;
+}
+
+.productItem:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-blue);
+}
+
+/* Imagem do produto */
+
+.productItem img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+/* Título do produto */
+
+.productItem h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  line-height: 1.4;
+}
+
+/* Badge de status (em estoque / fora de estoque) */
+
+.productItem h5 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  display: inline-block;
+}
+
+.inStock {
+  background-color: rgba(34, 197, 94, 0.15);
+  color: #15803d;
+}
+
+.outOfStock {
+  /* ====== controles de qtd ====== */
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #991b1b;
+}
+
+.qtyControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(59, 130, 246, 0.05);
+  border: 1px solid var(--color-gray-300);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.qtyControls button {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  color: var(--color-gray-950);
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qtyControls button:hover:not(:disabled) {
+  background-color: var(--color-blue);
+  color: white;
+}
+
+.qtyControls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qtyControls p {
+  font-weight: 600;
+  color: var(--color-gray-950);
+  /* ====== PREÇO ====== */
+  .productItem > p:last-of-type {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-blue);
+    min-width: 100px;
+    text-align: center;
+  }
+
+  /* ====== BOTÃO REMOVE ====== */
+  font-weight: 700;
+  color: var(--color-blue);
+  min-width: 100px;
+  text-align: center;
+}
+
+.productItem button:not(.qtyControls button) {
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-red);
+  border: 1.5px solid var(--color-red);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+/* ====== PAINEL RESUMO (STICKY) ====== */
+.productItem button:not(.qtyControls button):hover {
+  background-color: var(--color-red);
+  color: white;
+}
+
+.summaryPanel {
+  width: 300px;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.08) 0%,
+    rgba(59, 130, 246, 0.04) 100%
+  );
+  border: 2px solid var(--color-blue);
+  border-radius: 1rem;
+  padding: 2rem;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  animation: slideIn 0.4s ease-out;
+}
+
+.summaryPanel h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  /* ====== BOTÃO CHECKOUT ====== */
+  color: var(--color-gray-950);
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-blue);
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.checkoutButton {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  user-select: none;
+}
+
+.checkoutButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.checkoutButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ====== RESPONSIVIDADE - TABLET (1024px) ====== */
+.checkoutButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+  }
+
+  .summaryPanel {
+    width: 100%;
+    position: static;
+  }
+
+  .productItem {
+    grid-template-columns: 100px 1fr auto auto;
+    gap: 1rem;
+  }
+
+  .productItem img {
+    /* ====== RESPONSIVIDADE - MOBILE (768px) ====== */
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .productsPanel h1 {
+    font-size: 1.5rem;
+  }
+
+  .productItem {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .productItem img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .productItem h3 {
+    font-size: 1rem;
+  }
+
+  .productItem > p:last-of-type {
+    font-size: 1.125rem;
+    min-width: auto;
+  }
+
+  .qtyControls {
+    justify-content: space-between;
+  }
+
+  .productItem button:not(.qtyControls button) {
+    width: 100%;
+  }
+
+  .summaryPanel {
+    padding: 1.5rem;
+  }
+
+  /* ====== RESPONSIVIDADE - MOBILE PEQUENO (480px) ====== */
+  .checkoutButton {
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .productsPanel h1 {
+    font-size: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .product {
+    gap: 1rem;
+  }
+
+  .productItem {
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  .productItem h3 {
+    font-size: 0.95rem;
+  }
+
+  .productItem h5 {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .qtyControls {
+    padding: 0.375rem;
+  }
+
+  .qtyControls button {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1rem;
+  }
+
+  .qtyControls p {
+    font-size: 0.85rem;
+  }
+
+  .productItem button:not(.qtyControls button) {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .summaryPanel {
+    padding: 1rem;
+  }
+
+  .summaryPanel h1 {
+    font-size: 1.1rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .checkoutButton {
+    /* ====== DARK MODE ====== */
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .productItem:hover {
+    border-color: var(--color-blue);
+  }
+
+  .productItem > p:last-of-type {
+    color: #60a5fa;
+  }
+
+  .inStock {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+  }
+
+  .outOfStock {
+    /* ====== ANIMAÇÕES ====== */
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

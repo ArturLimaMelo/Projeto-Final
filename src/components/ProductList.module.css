@@ -1,16 +1,26 @@
 .table {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 1rem;
   padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@media (min-width: 640px) {
+/* 📱 Mobile — até 639px */
+@media (max-width: 639px) {
+  .table {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 📱📲 Tablets — 640px até 1023px */
+@media (min-width: 640px) and (max-width: 1023px) {
   .table {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* 💻 Desktop — 1024px+ */
 @media (min-width: 1024px) {
   .table {
     grid-template-columns: repeat(4, 1fr);

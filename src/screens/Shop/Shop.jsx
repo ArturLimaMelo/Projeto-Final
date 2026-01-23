@@ -11,7 +11,7 @@ export default function Shop() {
 
   useEffect(() => {
     fetchProducts();
-  });
+  }, []);
 
   async function fetchProducts() {
     const { data, error } = await supabase.from("produto").select("*");

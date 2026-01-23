@@ -1,28 +1,34 @@
-// Importa o CSS Module específico dessa página
 import styles from "./Landing.module.css";
-
-// Importa um loader circular do MUI (não está sendo usado ainda)
 import CircularProgress from "@mui/joy/CircularProgress";
-
-// Importa o componente oficial do Spline para React
 import Spline from "@splinetool/react-spline";
 
-// Componente principal da Landing Page
+import { useState, useEffect } from "react";
+
 export default function Landing() {
-  return (
-    // Section que envolve o Spline
-    // Serve como "janela de recorte" (viewport do 3D)
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+useEffect(() => {
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  }
+
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
+  if (width > 1100) {
+    return (
     <section className={styles.splineWrapper}>
-
-      {/* 
-        Componente do Spline
-        Ele renderiza internamente:
-        <div>
-          <canvas />
-        </div>
-      */}
       <Spline scene="https://prod.spline.design/nhe4VadwsE4vtqiX/scene.splinecode" />
-
     </section>
-  );
+    );
+  } else {
+    return (
+    <section className={styles.splineWrapper}>
+      <Spline scene="https://prod.spline.design/elWf1AsCsebxRdiB/scene.splinecode" />
+    </section>
+    );
+  }
 }

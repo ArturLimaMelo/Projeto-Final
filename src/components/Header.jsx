@@ -15,14 +15,14 @@ export function Header() {
       </Link>
 
       <div className={styles.options}>
-        <ThemeToggle className={styles.icon} />
+        <ThemeToggle />
         {!session ? (
           <>
             <Link to="/login" className={styles.link}>
               <UserRound className={styles.icon} />
             </Link>
             <Link to="/signup" className={styles.link}>
-              <LogIn />
+              <LogIn className={styles.icon} />
             </Link>
           </>
         ) : (

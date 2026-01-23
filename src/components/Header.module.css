@@ -29,6 +29,17 @@
     } 
 }
 
+@media (min-width:641px) and (max-width: 1200px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .icon {
+        width: 3rem;
+        height: auto; 
+    } 
+}
+
 .options {
     display: flex;
     gap: 1rem;

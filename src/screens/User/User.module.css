@@ -10,30 +10,64 @@
   background-color: var(--color-gray-50);
   color: var(--color-gray-950);
   height: 100%;
+  gap: 1.5rem;
 }
 
 @media (max-width: 640px) {
   .container {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
   }
 
   .userPanel {
+    width: 100%;
+    max-width: 100%;
     flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-  }  
+  }
+
+  .storePanel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .userInfo {
+    max-width: 100%;
+  }
+
 }
+
+@media (min-width: 640px) and (max-width: 1200px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userPanel {
+    flex-direction: row;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .storeSide {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .storePanel {
+    max-width: 26rem;
+  }
+}
+
+
 
 .userPanel {
   border: 1px solid var(--card-border);
   display: flex;
-  min-width: max-content;
+  min-width: unset;
   color: var(--card-text);
   background-color: var(--card-bg);
-  height: 100%;
+  width: 100%;
+  max-width: 700px;
 }
 
 .userInfo {
@@ -87,7 +121,8 @@
 
 .storePanel {
   border: 1px solid var(--card-border);
-  width: 20rem;
+  width: 100%;
+  max-width: 22rem;
   height: 25rem;
   padding: 1rem;
   background-color: var(--card-bg);
@@ -240,7 +275,8 @@
 }
 
 .store_img {
-  width: 14rem;
+  width: 100%;
+  max-width: 14rem;
   border-radius: 50%;
   transition: .3s;
     &:hover {

@@ -17,3 +17,17 @@
 .toggleButton:hover {
   color: var(--primary-dark);
 }
+
+@media (max-width: 640px) {
+  .toggleButton svg {
+    width: 1.3rem;
+    height: auto;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1200px) {
+  .toggleButton svg {
+    width: 3rem;
+    height: auto;
+  }
+}

@@ -278,6 +278,7 @@ export default function CriarProduto() {
                                    onChange={handleChange}
                                    placeholder="0"
                                    min="0"
+               
                                    required
                               />
                          </div>

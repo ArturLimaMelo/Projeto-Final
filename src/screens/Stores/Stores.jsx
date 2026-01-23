@@ -2,9 +2,11 @@ import styles from "./Stores.module.css";
 
 import { useState, useEffect, useContext } from "react";
 import { SessionContext } from "../../context/SessionContext";
+import { Link } from "react-router";
 import { supabase } from "../../utils/supabase";
 import ProductList from "../../components/ProductList.jsx";
 import CircularProgress from "@mui/joy/CircularProgress";
+import { Plus } from "lucide-react";
 
 export default function Stores() {
   const { session } = useContext(SessionContext);
@@ -117,6 +119,14 @@ export default function Stores() {
           <ProductList products={products} />
         )}
       </main>
+      <div className={styles.addProduct}>
+        <h1>Adicionar produto</h1>
+        <Link to="/addproduto" className={styles.link}>
+          <button className={styles.button}>
+            <Plus />
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 :root[data-theme="light"] {
-
   --color-blue: oklch(69% 50% 264deg);
   --color-red: oklch(80% 55% 31deg);
 
@@ -21,14 +20,30 @@
   --card-bg: var(--color-gray-50);
   --card-border: oklch(90% 0.6% 264deg / 70%);
   --card-login-bg: var(--color-gray-0);
-  
 
+  /* ===== Blue Variants ===== */
+  --color-blue-soft: rgba(59, 130, 246, 0.05);
+  --color-blue-soft-hover: rgba(59, 130, 246, 0.1);
+  --color-blue-border: rgba(59, 130, 246, 0.2);
+  --color-blue-border-soft: rgba(59, 130, 246, 0.15);
 
+  /* ===== Shadows ===== */
+  --shadow-card-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-card-lg: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  --shadow-blue-outline: 0 0 0 1px rgba(59, 130, 246, 0.2);
+  --shadow-blue-button: 0 4px 12px rgba(59, 130, 246, 0.3);
+  --shadow-blue-button-hover: 0 6px 16px rgba(59, 130, 246, 0.4);
+
+  /* ===== Gradients ===== */
+  --gradient-blue-main: linear-gradient(
+    135deg,
+    var(--color-blue) 0%,
+    #1d4ed8 100%
+  );
 }
 
-:root[data-theme="dark"]{
-
-  
+:root[data-theme="dark"] {
   --color-blue: oklch(45% 50% 264deg);
   --color-red: oklch(50% 55% 31deg);
 
@@ -52,4 +67,24 @@
   --card-text: var(--color-gray-950);
   --card-login-bg: var(--color-gray-250);
 
+  /* ===== Blue Variants ===== */
+  --color-blue-soft: rgba(59, 130, 246, 0.05);
+  --color-blue-soft-hover: rgba(59, 130, 246, 0.1);
+  --color-blue-border: rgba(59, 130, 246, 0.2);
+  --color-blue-border-soft: rgba(59, 130, 246, 0.15);
+
+  /* ===== Shadows ===== */
+  --shadow-card-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-card-lg: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  --shadow-blue-outline: 0 0 0 1px rgba(59, 130, 246, 0.2);
+  --shadow-blue-button: 0 4px 12px rgba(59, 130, 246, 0.3);
+  --shadow-blue-button-hover: 0 6px 16px rgba(59, 130, 246, 0.4);
+
+  /* ===== Gradients ===== */
+  --gradient-blue-main: linear-gradient(
+    135deg,
+    var(--color-blue) 0%,
+    #1d4ed8 100%
+  );
 }

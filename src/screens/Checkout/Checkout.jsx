@@ -199,7 +199,19 @@ export default function Checkout() {
             acc + ((productDetailsMap[p.product_id ?? p.id]?.price ?? p.price ?? 0) * (p.qty ?? p.quantity ?? 1)),
         0
     );
-    
+
+    function handleFinish() {
+        if (uniqueProducts.length === 0) {
+            setErrors({ cart: "Seu carrinho está vazio." });
+            return;
+        }
+        if (paymentMethod === "") {
+            setErrors({ payment: "Selecione um método de pagamento." });
+            return;
+        }
+        navigate('/pagamento');
+    }
+
     return (
         <div className={styles.container}>
             <h1>Finalizar Compra</h1>
@@ -518,6 +530,7 @@ export default function Checkout() {
                                 checked={paymentMethod === "creditCard"}
                                 onChange={(e) => setPaymentMethod(e.target.value)}
                                 className={styles.paymentInput}
+                                disabled
                             />
                             <label htmlFor="creditCard" className={styles.paymentLabel}>
                                 <span className={styles.paymentName}>Cartão de Crédito</span>
@@ -534,6 +547,7 @@ export default function Checkout() {
                                 checked={paymentMethod === "bankSlip"}
                                 onChange={(e) => setPaymentMethod(e.target.value)}
                                 className={styles.paymentInput}
+                                disabled
                             />
                             <label htmlFor="bankSlip" className={styles.paymentLabel}>
                                 <span className={styles.paymentName}>Boleto</span>
@@ -550,6 +564,7 @@ export default function Checkout() {
                                 checked={paymentMethod === "debit"}
                                 onChange={(e) => setPaymentMethod(e.target.value)}
                                 className={styles.paymentInput}
+                                disabled
                             />
                             <label htmlFor="debit" className={styles.paymentLabel}>
                                 <span className={styles.paymentName}>Débito</span>
@@ -561,6 +576,9 @@ export default function Checkout() {
             </div>
             <div className={styles.SummaryPanel}>
                 <h1>Resumo do pedido</h1>
+                {errors.address && <p className={styles.error}>{errors.address}</p>}
+                {errors.cart && <p className={styles.error}>{errors.cart}</p>}
+                {errors.payment && <p className={styles.error}>{errors.payment}</p>}
                 <div className={styles.productsList}>
                     {uniqueProducts.length === 0 ? (
                         <p>Seu carrinho está vazio.</p>
@@ -591,7 +609,7 @@ export default function Checkout() {
                     )}
                 </div>
                 <p>Subtotal: R$ {subtotal.toFixed(2)}</p>
-                <button><Check /> Finalizar pedido</button>
+                <button type="button" onClick={handleFinish}><Check /> Finalizar pedido</button>
             </div>
         </div>
     );

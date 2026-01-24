@@ -40,10 +40,9 @@ export default function User() {
         .from("loja")
         .select("*")
         .eq("store_owner_id", session.user.id)
-        .single();
 
       if (error) {
-        console.error("Erro ao buscar loja:", userStoreError);
+        console.error("Erro ao buscar loja:", error);
         setLoading(false);
         return;
       }
@@ -76,8 +75,10 @@ export default function User() {
     const title = formData.get("title");
     const description = formData.get("description");
     const thumbnail = formData.get("thumbnail");
+    const pix_key = formData.get("pix_key");
+    const contact = formData.get("contact");
 
-    if (!title || !description || !thumbnail) {
+    if (!title || !description || !pix_key || !thumbnail || !contact) {
       setErrors({ form: "Todos os campos são obrigatórios." });
       setLoading(false);
       return;
@@ -88,6 +89,8 @@ export default function User() {
       store_title: title,
       store_description: description,
       store_thumbnail: thumbnail,
+      pix_key: pix_key,
+      contact: contact
     };
 
     const { data: storeData, error: storeError } = await supabase
@@ -196,6 +199,30 @@ export default function User() {
                       type="text"
                       required
                       placeholder="Compre produtos incríveis!"
+                      className={styles.Input}
+                    />
+                    <Field.Error className={styles.Error} />
+                  </Field.Root>
+                  <Field.Root name="pix_key" className={styles.Field}>
+                    <Field.Label className={styles.Label}>
+                      Chave PIX
+                    </Field.Label>
+                    <Field.Control
+                      type="text"
+                      required
+                      placeholder="123.456.789-00"
+                      className={styles.Input}
+                    />
+                    <Field.Error className={styles.Error} />
+                  </Field.Root>
+                  <Field.Root name="contact" className={styles.Field}>
+                    <Field.Label className={styles.Label}>
+                      Contato
+                    </Field.Label>
+                    <Field.Control
+                      type="tel"
+                      required
+                      placeholder="(84) 9 1234-5678"
                       className={styles.Input}
                     />
                     <Field.Error className={styles.Error} />

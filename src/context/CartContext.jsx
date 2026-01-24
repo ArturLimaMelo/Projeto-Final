@@ -169,6 +169,7 @@ export function CartProvider({ children }) {
         });
         if (insertErr) {
           console.error("Error adding item to cart:", insertErr);
+        } else {
         }
       } catch (err) {
         console.error("addToCart exception:", err);

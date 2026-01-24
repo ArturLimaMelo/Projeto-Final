@@ -6,6 +6,7 @@
     align-items: center;
     background-color: var(--container-bg);
     color: var(--text-base);
+    flex: 1;
 }
 
 .main h2 {

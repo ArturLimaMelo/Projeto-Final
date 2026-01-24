@@ -1,0 +1,458 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 4rem;
+  width: 100%;
+  background-color: var(--card-bg);
+  font-family:
+    "Raleway",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.container > h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gray-950);
+  margin-bottom: 1rem;
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+/* ===== Seções principais - estilos para cards  ===== */
+.userInfo,
+.addressInfo,
+.payment,
+.SummaryPanel {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: var(--shadow-card-sm);
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease-out;
+}
+
+.userInfo:hover,
+.addressInfo:hover,
+.payment:hover,
+.SummaryPanel:hover {
+  box-shadow: var(--shadow-card-lg);
+}
+
+/* ===== Títulos das seções ===== */
+.userInfo h1,
+.addressInfo h1,
+.payment h1,
+.SummaryPanel h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-blue);
+  padding-bottom: 1rem;
+  font-family:
+    "Montserrat",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+.userInfo h1 svg,
+.addressInfo h1 svg,
+.payment h1 svg,
+.SummaryPanel h1 svg {
+  color: var(--color-blue);
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ===== User Info ===== */
+.userInfo p {
+  font-size: 1rem;
+  color: var(--color-gray-600);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.userInfo p strong {
+  font-weight: 600;
+  color: var(--color-gray-950);
+  min-width: 60px;
+}
+
+/* ===== Address Info ===== */
+.selectedAddress {
+  background-color: var(--color-blue-soft);
+  border: 1px solid var(--color-blue-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.selectedAddress p {
+  font-size: 1rem;
+  color: var(--color-gray-600);
+  margin-bottom: 0.5rem;
+}
+
+.selectedAddress p strong {
+  font-weight: 600;
+  color: var(--color-gray-950);
+}
+
+/* ===== Payment - PIX specific styles ===== */
+.pixInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pixInfo p {
+  font-size: 1rem;
+  color: var(--color-gray-600);
+  margin-bottom: 0.5rem;
+}
+
+.pixInfo p strong {
+  font-weight: 600;
+  color: var(--color-gray-950);
+}
+
+.pixDetails {
+  background-color: var(--color-blue-soft);
+  border: 1px solid var(--color-blue-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.pixDetails p {
+  font-size: 0.95rem;
+  color: var(--color-gray-600);
+}
+
+.pixDetails p strong {
+  font-weight: 600;
+  color: var(--color-gray-950);
+}
+
+.qrPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+.qrPlaceholder img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.qrPlaceholder p {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  text-align: center;
+}
+
+/* ===== Summary Panel  - produtos, scrollbar, botão de finalização ===== */
+.SummaryPanel {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.08) 0%,
+    rgba(59, 130, 246, 0.04) 100%
+  );
+  border: 2px solid var(--color-blue);
+  position: sticky;
+  top: 2rem;
+}
+
+.productsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.productsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.productsList::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.productsList::-webkit-scrollbar-thumb {
+  background: var(--color-blue);
+  border-radius: 10px;
+}
+
+.productsList p {
+  color: var(--color-gray-600);
+  text-align: center;
+  padding: 1rem;
+}
+
+.orderProduct {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.orderProduct:hover {
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.orderProduct img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.productInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.productInfo h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  line-height: 1.4;
+}
+
+.productInfo p {
+  font-size: 0.85rem;
+  color: var(--color-gray-600);
+}
+
+.price {
+  font-weight: 700 !important;
+  color: var(--color-blue) !important;
+  font-size: 1rem !important;
+}
+
+.subtotal {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-950);
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.finalizeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-blue) 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.finalizeBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.finalizeBtn:active {
+  transform: translateY(0);
+}
+
+.finalizeBtn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ===== Responsive Design - mobile ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .container > h1 {
+    font-size: 1.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .userInfo,
+  .addressInfo,
+  .payment,
+  .SummaryPanel {
+    padding: 1.25rem;
+  }
+
+  .userInfo h1,
+  .addressInfo h1,
+  .payment h1,
+  .SummaryPanel h1 {
+    font-size: 1.25rem;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .SummaryPanel {
+    position: static;
+  }
+
+  .productsList {
+    max-height: none;
+  }
+
+  .orderProduct {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .orderProduct img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .qrPlaceholder img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .container > h1 {
+    font-size: 1.5rem;
+  }
+
+  .userInfo,
+  .addressInfo,
+  .payment,
+  .SummaryPanel {
+    padding: 1rem;
+  }
+
+  .userInfo h1,
+  .addressInfo h1,
+  .payment h1,
+  .SummaryPanel h1 {
+    font-size: 1.1rem;
+    gap: 0.4rem;
+  }
+
+  .userInfo h1 svg,
+  .addressInfo h1 svg,
+  .payment h1 svg,
+  .SummaryPanel h1 svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .finalizeBtn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .productsList {
+    gap: 0.75rem;
+  }
+
+  .orderProduct img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .qrPlaceholder img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* ===== Dark Mode Adjustments  - ajustes e transições ===== */
+@media (prefers-color-scheme: dark) {
+  .userInfo p,
+  .selectedAddress p,
+  .pixDetails p,
+  .qrPlaceholder p,
+  .productInfo p {
+    color: var(--color-gray-500);
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

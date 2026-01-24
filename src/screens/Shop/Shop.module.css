@@ -1,0 +1,162 @@
+.shopContainer {
+  width: 100%;
+  background-color: var(--container-bg);
+  color: var(--text-base);
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.shopWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.shopHeader {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--color-gray-200);
+  padding-bottom: 1.5rem;
+ justify-content: center;
+  text-align: center;
+}
+
+.shopTitle {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--text-title);
+  margin: 0;
+  font-weight: 600;
+}
+
+.shopDescription {
+  font-size: clamp(0.875rem, 3vw, 1rem);
+  color: var(--color-gray-500);
+  margin-top: 0.5rem;
+}
+
+/* ===== Filter & Sort Section ===== */
+.filterSection {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filterButton,
+.sortButton {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--color-blue-border);
+  border-radius: 6px;
+  background-color: var(--color-blue-soft);
+  color: var(--color-blue);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filterButton:hover,
+.sortButton:hover {
+  background-color: var(--color-blue-soft-hover);
+  border-color: var(--color-blue);
+  box-shadow: var(--shadow-blue-outline);
+}
+
+.filterButton:active,
+.sortButton:active {
+  transform: scale(0.98);
+}
+
+/* ===== Product Grid ===== */
+.productsGrid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+/* 📱 Mobile — até 639px */
+@media (max-width: 639px) {
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .shopHeader {
+    margin-bottom: 1.5rem;
+  }
+
+  .filterSection {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .filterButton,
+  .sortButton {
+    width: 100%;
+  }
+}
+
+/* 📱📲 Tablets — 640px até 1023px */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 💻 Desktop — 1024px+ */
+@media (min-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .filterSection {
+    justify-content: space-between;
+  }
+}
+
+/* ===== Empty State ===== */
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  background-color: var(--card-bg);
+  border: 2px dashed var(--color-gray-300);
+  border-radius: 8px;
+}
+
+.emptyStateTitle {
+  font-size: 1.5rem;
+  color: var(--color-gray-400);
+  margin-bottom: 0.5rem;
+}
+
+.emptyStateMessage {
+  color: var(--color-gray-500);
+  font-size: 0.95rem;
+}
+
+/* ===== Loading State ===== */
+.loadingContainer {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.loadingSpinner {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid var(--color-gray-200);
+  border-top: 3px solid var(--color-blue);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

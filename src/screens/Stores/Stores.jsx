@@ -106,6 +106,7 @@ export default function Stores() {
 
       <main className={styles.main}>
         <h2>Produtos</h2>
+        
         {loadingProducts ? (
           <CircularProgress
             color="primary"
@@ -114,9 +115,13 @@ export default function Stores() {
             variant="plain"
           />
         ) : session.user.id === storeData.store_owner_id ? (
-          <ProductList products={products} mode={true} />
+          <div className={styles.products}>
+            <ProductList products={products} mode={true} />
+          </div>
         ) : (
-          <ProductList products={products} />
+          <div className={styles.products}>
+            <ProductList products={products} />
+          </div>
         )}
       </main>
       <div className={styles.addProduct}>

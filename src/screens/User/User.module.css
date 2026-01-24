@@ -123,7 +123,7 @@
   border: 1px solid var(--card-border);
   width: 100%;
   max-width: 22rem;
-  height: 25rem;
+  min-height: 100%;
   padding: 1rem;
   background-color: var(--card-bg);
   color: var(--card-text);
@@ -168,7 +168,7 @@
   display: flex;
   justify-content: center;
   border: 1px solid var(--color-gray-400);  
-  height: fit-content;
+  min-height: 100%;
   width: 100%;
 }
 
@@ -275,12 +275,11 @@
 }
 
 .store_img {
-  width: 100%;
-  max-width: 14rem;
+  max-width: clamp(15rem, 40vw, 14rem);
+  max-height: clamp(15rem, 40vw, 14rem);
   border-radius: 50%;
   transition: .3s;
     &:hover {
-      width: 15rem;
       border-radius: 10px;
     }
 }

@@ -23,8 +23,16 @@ export default function Shop() {
   }
 
   return (
-    <>
-      <ProductList products={products}></ProductList>
-    </>
+    <div className={styles.shopContainer}>
+      <div className={styles.shopWrapper}>
+        <div className={styles.shopHeader}>
+          <h1 className={styles.shopTitle}>Loja</h1>
+          <p className={styles.shopDescription}>
+            Explore nossos produtos disponíveis
+          </p>
+        </div>
+        <ProductList products={products}></ProductList>
+      </div>
+    </div>
   );
 }

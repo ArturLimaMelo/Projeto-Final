@@ -283,6 +283,14 @@ export function CartProvider({ children }) {
 
   const clearCart = async (product) => {
     if (!session) return;
+
+    const productId = product.product_id;
+    setCart((prevCart) =>
+    prevCart.filter(
+    (item) =>
+    (item.product_id ?? item.id) !== productId
+    )
+    );
     try {
       const { error } = await supabase.from("cart")
       .delete()

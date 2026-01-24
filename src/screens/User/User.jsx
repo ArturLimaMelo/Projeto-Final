@@ -40,6 +40,7 @@ export default function User() {
         .from("loja")
         .select("*")
         .eq("store_owner_id", session.user.id)
+        .single();
 
       if (error) {
         console.error("Erro ao buscar loja:", error);
@@ -90,7 +91,7 @@ export default function User() {
       store_description: description,
       store_thumbnail: thumbnail,
       pix_key: pix_key,
-      contact: contact
+      contact: contact,
     };
 
     const { data: storeData, error: storeError } = await supabase
@@ -124,7 +125,6 @@ export default function User() {
     }));
 
     setBuildStore(false);
-
     setLoading(false);
   }
 
@@ -216,9 +216,7 @@ export default function User() {
                     <Field.Error className={styles.Error} />
                   </Field.Root>
                   <Field.Root name="contact" className={styles.Field}>
-                    <Field.Label className={styles.Label}>
-                      Contato
-                    </Field.Label>
+                    <Field.Label className={styles.Label}>Contato</Field.Label>
                     <Field.Control
                       type="tel"
                       required
@@ -261,16 +259,16 @@ export default function User() {
               </>
             ) : buildStore === false && userData.store === true ? (
               <>
-                  <Link to="/store" className={styles.store_info_container}>
-                    <h2>{userStoreData.store_title}</h2>
-                    <p>{userStoreData.store_description}</p>
-                    <img
-                      className={styles.store_img}
-                      src={userStoreData.store_thumbnail}
-                      alt="imagem da loja"
-                    />
-                  </Link>
-                </>
+                <Link to="/store" className={styles.store_info_container}>
+                  <h2>{userStoreData.store_title}</h2>
+                  <p>{userStoreData.store_description}</p>
+                  <img
+                    className={styles.store_img}
+                    src={userStoreData?.store_thumbnail}
+                    alt="imagem da loja"
+                  />
+                </Link>
+              </>
             ) : (
               <></>
             )}

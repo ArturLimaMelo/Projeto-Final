@@ -1,4 +1,5 @@
 :root[data-theme="light"] {
+  --color-darkblue: oklch(36.058% 0.15553 264.389);
   --color-blue: oklch(69% 50% 264deg);
   --color-red: oklch(80% 55% 31deg);
 
@@ -47,9 +48,16 @@
     var(--color-blue) 0%,
     #1d4ed8 100%
   );
+
+  --gradient-darkblue-main: linear-gradient(
+    135deg,
+    var(--color-darkblue) 0%,
+    #1d4ed8 100%
+  );
 }
 
 :root[data-theme="dark"] {
+  --color-darkblue: oklch(57.983% 0.19562 265.432);
   --color-blue: oklch(45% 50% 264deg);
   --color-red: oklch(50% 55% 31deg);
 
@@ -94,7 +102,13 @@
   /* ===== Gradients ===== */
   --gradient-blue-main: linear-gradient(
     135deg,
-    var(--color-blue) 0%,
+    var(--color-darkblue) 0%,
+    #1d4ed8 100%
+  );
+
+  --gradient-darkblue-main: linear-gradient(
+    135deg,
+    var(--color-darkblue) 0%,
     #1d4ed8 100%
   );
 }

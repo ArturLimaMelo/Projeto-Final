@@ -103,7 +103,7 @@
 
 .readOnlyField {
   background-color: var(--color-gray-200);
-  color: var(--color-gray-400);
+  color: var(--color-gray-4 00);
   cursor: not-allowed;
   font-weight: 600;
 }

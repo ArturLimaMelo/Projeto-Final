@@ -15,6 +15,7 @@ import { SessionProvider } from "./context/SessionContext";
 import { CartProvider } from "./context/CartContext";
 import Checkout from "./screens/Checkout/Checkout.jsx";
 import CriarProduto from "./screens/CriarProduto/CriarProduto";
+import Orders from "./screens/Orders/Orders.jsx";
 import TelaP from "./screens/Pagamento/TelaP.jsx";
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
                 <Route path="/user" element={<User />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/store" element={<Stores />} />
+                <Route path="/orders" element={<Orders />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/addproduto" element={<CriarProduto />} />
                 <Route path="/pagamento" element={<TelaP />} />

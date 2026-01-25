@@ -220,8 +220,9 @@ export default function Product({ product, mode }) {
                 addToCart(product);
               }}
               className={styles.Button}
+              disabled={product.stock <= 0}
             >
-              Adicionar ao Carrinho
+              {product.stock <= 0 ? "Fora de Estoque" : "Adicionar ao Carrinho"}
               <ShoppingCart />
             </button>
           </div>

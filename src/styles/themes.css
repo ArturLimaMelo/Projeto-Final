@@ -21,8 +21,12 @@
   --text-base: var(--color-gray-700);
 
   --stock: #11df59;
-  
-  --container-bg: var(--color-gray-0);
+
+  --primary-color: var(--color-blue);
+  --primary-hover: #1d4ed8;
+  --success-color: #10b981;
+
+  --container-bg: var(--color-gray-50);
   /* Card tokens for consistent card styling */
   --card-bg: var(--color-gray-0);
   --card-border: oklch(90% 0.6% 264deg / 70%);

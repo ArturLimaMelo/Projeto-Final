@@ -122,6 +122,50 @@ export default function TelaP() {
     const handleFinalizePayment = async () => {
         alert("Pagamento via Pix finalizado! (Simulação)");
         try {
+            const productIds = uniqueProducts.map(p => p.product_id ?? p.id);
+            const quantities = uniqueProducts.map(p => p.qty ?? p.quantity ?? 1);
+
+            const { data, error } = await supabase.from("orders").insert([{
+                order_id: crypto.randomUUID(),
+                user_id: session.user.id,
+                product_list_id: JSON.stringify(productIds),
+                product_list_qty: JSON.stringify(quantities),
+                total: subtotal,
+                payment_method: "PIX",
+            }]);
+
+            if (error) {
+                console.error("Erro ao registrar pedido:", error);
+            } else {
+                console.log("Pedido registrado com sucesso:", data);
+            }
+        } catch(err) {
+            console.error("Erro ao registrar pedido:", err);
+        }
+
+        try {
+            for (const product of uniqueProducts) {
+                const productId = product.product_id;
+                const qtyBought = product.qty ?? product.quantity ?? 1;
+                const currentStock = productDetailsMap[productId]?.stock;
+                const newStock = Math.max(0, currentStock - qtyBought); 
+
+                const { error: updateError } = await supabase
+                    .from("produto")
+                    .update({ stock: newStock })
+                    .eq("product_id", productId);
+
+                if (updateError) {
+                    console.error(`Erro ao atualizar estoque do produto ${productId}:`, updateError);
+                } else {
+                    console.log(`Estoque do produto ${productId} atualizado para ${newStock}`);
+                }
+            }
+        } catch (err) {
+            console.error("Erro ao atualizar estoques:", err);
+        }
+
+        try {
             const {data} = await supabase.from("cart").delete().eq("user_id", session.user.id);
         } catch (err) {
             console.error("Erro ao limpar carrinho após pagamento:", err);

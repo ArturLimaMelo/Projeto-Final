@@ -93,7 +93,7 @@ export default function Cart() {
                           -
                         </button>
                         <p>{display.qty}</p>
-                        <button onClick={() => addToCart(product)}>+</button>
+                        <button onClick={() => addToCart(product)} disabled={display.qty >= display.stock}>+</button>
                       </div>
 
                       <p>${(display.price).toFixed(2)}</p>

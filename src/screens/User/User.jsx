@@ -165,7 +165,7 @@ export default function User() {
             {buildStore === false && userData.store === false ? (
               <>
                 <button
-                  className={styles.start}
+                  className={styles.startButton}
                   onClick={() => setBuildStore(true)}
                 >
                   Começar?
